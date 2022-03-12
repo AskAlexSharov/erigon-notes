@@ -30,3 +30,11 @@ Mainnet (after txn_begin_end) .seg create: 12hours
 
 194G total
 
+
+- BSC Pruned (500 distance): write 60Mb/s on tip of chain
+- Mainnet no pruning: 5mb/s
+- Mainnet pruning, snapshots: 5mb/s
+- Mainnet pruning + 8kb pageSize: 13mb/s
+- BSC: 14.5M blocks .seg files 376Gb
+
+
