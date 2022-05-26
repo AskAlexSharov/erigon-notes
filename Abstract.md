@@ -61,6 +61,13 @@ Abstract
     - remote_kv.TxLookup() - doesn’t use existing read transaction
     - remote_kv.Block() - doesn’t use existing read transaction
     - Under heavy load to getBlockByNumber - does race (or panic)
+
+## In progress
+- AuRa Gnosis DAO
+- Observer
+- 
+
+## Low Prio
 - Binance:
     - make —db.pageSize=8kb default
 - Grafana:
