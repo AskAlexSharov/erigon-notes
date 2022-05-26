@@ -28,9 +28,12 @@ Abstract
         - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
     - reduce nil-ness:
         - less rely on nil-ness of objects: “if txpool == nil {“ - better use cfg.TxPool.Enabled. It means we can create internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is enabled.
+
 - Rollup:
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup inside Erigon).
+
 - DockerCompose: add external txpool and 2 sentries
+
 - TxPool - less goroutines (1 channel and 1 goroutine per subscriber)
     - txpool autostart on netID > 10. Mining has hacks. Mining need
     - rlp and transaction receipts
@@ -38,34 +41,45 @@ Abstract
     - Investigate nil in LRU https://github.com/ledgerwatch/erigon/issues/3799
     - move tx.rlp field to separated map, to make tx immutable
     - txpool_content - doesn’t support filters (TxPool can have 500K transactions). we need new method or extend this one - to support basic filters.
+
 - Pool Far:
     - History of txPool (by option): timestamp when we received it by p2p, timestamp of rejection, tx rlp, senderAddr senderNonce, senderBalance, rejection reason, reason of moving to pool X.
     - Default history of rejection by txHash for 1 day only for local txs.
+
 - BitTorrent:
     - after restart it may Ban good peers https://github.com/anacrolix/torrent/issues/746
     - I think sometime it does ban all peers - and stuck
+
 - Snapshots:
     - Automate git push to snapshots repo
+
 - Erigon2:
     - run all /tests on new commitment code
     - getter - iterator on stack
     - like tables.go - but for snapshots
     - like rawdb - but for snapshots
     - Test for snapshots
+
 - After Erigon2:
     - mining must use new commitment code
+
 - Erigon:
-    - can’t run with -race flag
+  - can’t run with -race flag
+
 - RPCDaemon:
     - remote_kv server - change architecture to reduce amount of read txs (or just somehow increase amount of read txs).
     - remote_kv.TxLookup() - doesn’t use existing read transaction
     - remote_kv.Block() - doesn’t use existing read transaction
     - Under heavy load to getBlockByNumber - does race (or panic)
+
 - Binance:
     - make —db.pageSize=8kb default
+
 - Grafana:
     - Add torrent metrics
+
 - Compressor:
     - predict posmap size (or move it to the end of file). predict posmap size. Or move .seg header to footer.
+
 - Cloud:
     - Add some flag to enable kv.ReadAhead and more parallelism on disk reads (—disk=throughput ?)
