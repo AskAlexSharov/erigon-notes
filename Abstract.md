@@ -1,5 +1,3 @@
-Abstract
-
 # Erigon support (from Github)
 
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
