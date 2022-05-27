@@ -46,6 +46,7 @@ Abstract
     - rlp and transaction receipts
     - after Erigon2 need mining move to TxPool
     - Investigate nil in LRU https://github.com/ledgerwatch/erigon/issues/3799
+      and https://github.com/hashicorp/golang-lru/issues/100
     - move tx.rlp field to separated map, to make tx immutable
     - txpool_content - doesn’t support filters (TxPool can have 500K transactions). we need new method or extend this
       one - to support basic filters.
