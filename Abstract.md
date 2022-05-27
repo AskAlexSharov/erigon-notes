@@ -20,6 +20,8 @@ Abstract
     - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
     - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
       methods: https://github.com/ledgerwatch/erigon/issues/3080
+    - Different results found for rpctest benchTraceCallMany (Erigon vs OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
+    - Different results for trace_filter between Erigon and OE #2138 https://github.com/ledgerwatch/erigon/issues/2138
     - close this tasks? https://github.com/ledgerwatch/erigon/issues/2659 and https://github.com/ledgerwatch/erigon/issues/2658
 
 
