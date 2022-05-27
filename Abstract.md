@@ -131,4 +131,3 @@ Abstract
 - Cloud:
     - Add some flag to enable kv.ReadAhead and more parallelism on disk reads (—disk=throughput ?)
 - Please provide official binaries: https://github.com/ledgerwatch/erigon/issues/4153
-- 
