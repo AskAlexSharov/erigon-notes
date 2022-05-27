@@ -44,6 +44,8 @@ Abstract
 - BitTorrent:
     - after restart it may Ban good peers https://github.com/anacrolix/torrent/issues/746
     - I think sometime it does ban all peers - and stuck
+    - BitTorrent has feature: fallback to http urls if no peers alive. Investigate if we can use public S3 or GCS as such fallback. How much it will cost? Cheaper than maintain Downloader node + backups?
+    -  
 - Snapshots:
     - Automate git push to snapshots repo
 - Erigon2:
@@ -52,6 +54,9 @@ Abstract
     - like tables.go - but for snapshots
     - like rawdb - but for snapshots
     - Test for snapshots
+- Erigon2 Upgrade2:
+  - Addapt new History and Commitment code behind experimental flag
+  - 
 - After Erigon2:
     - mining must use new commitment code
 - Erigon:
