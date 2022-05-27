@@ -2,11 +2,11 @@ Abstract
 
 - Erigon support:
     - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
-    - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
     - bsc trace rpc return bnb burning inner transaction on every
+    - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
       block https://github.com/ledgerwatch/erigon/issues/3968
     - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
-    - can’t run with -race flag 
+    - can’t run erigon with -race flag
 
 - Configuration (do by many small steps - easy to review PR):
     - 3 steps: 1. create configs, 2. create objects and stages, 3. start goroutines, httpListeners, connect to remote
