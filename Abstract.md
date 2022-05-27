@@ -5,7 +5,6 @@
   block https://github.com/ledgerwatch/erigon/issues/3968
 - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
 - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
-- can’t run erigon with -race flag
 - Can docker hub build images for other architectures? https://github.com/ledgerwatch/erigon/issues/3878
 - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
 - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
@@ -124,6 +123,7 @@
 
 ## Low Prio
 
+- can’t run erigon with -race flag
 - Binance:
     - make —db.pageSize=8kb default
 - Grafana:
