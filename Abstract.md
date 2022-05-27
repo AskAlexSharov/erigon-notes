@@ -4,7 +4,6 @@
 - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
   block https://github.com/ledgerwatch/erigon/issues/3968
 - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
-- Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
 - Can docker hub build images for other architectures? https://github.com/ledgerwatch/erigon/issues/3878
 - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
 - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
@@ -17,6 +16,7 @@
 - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
 - Tracing:
     - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
+    - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
     - Different results found for rpctest benchTraceCallMany (Erigon vs
       OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
     - Different results for trace_filter between Erigon and OE
