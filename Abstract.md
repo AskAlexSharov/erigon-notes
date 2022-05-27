@@ -18,11 +18,17 @@ Abstract
     - EIP-1898 differences in responses between Erigon and GETH https://github.com/ledgerwatch/erigon/issues/3434
     - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
     - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
-    - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
-      methods: https://github.com/ledgerwatch/erigon/issues/3080
-    - Different results found for rpctest benchTraceCallMany (Erigon vs OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
-    - Different results for trace_filter between Erigon and OE #2138 https://github.com/ledgerwatch/erigon/issues/2138
-    - close this tasks? https://github.com/ledgerwatch/erigon/issues/2659 and https://github.com/ledgerwatch/erigon/issues/2658
+    - Tracing:
+        - Different results found for rpctest benchTraceCallMany (Erigon vs
+          OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
+        - Different results for trace_filter between Erigon and OE
+          #2138 https://github.com/ledgerwatch/erigon/issues/2138
+        - Tracing has incorrect gasUsed for value transfers #1436 https://github.com/ledgerwatch/erigon/issues/1436
+        - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
+          methods: https://github.com/ledgerwatch/erigon/issues/3080
+    - close this tasks? https://github.com/ledgerwatch/erigon/issues/2659
+      and https://github.com/ledgerwatch/erigon/issues/2658
+    - Adopt tests in api_test.go for RPCDaemon https://github.com/ledgerwatch/erigon/issues/939
 
 
 - Configuration (do by many small steps - easy to review PR):
@@ -124,3 +130,5 @@ Abstract
     - predict posmap size (or move it to the end of file). predict posmap size. Or move .seg header to footer.
 - Cloud:
     - Add some flag to enable kv.ReadAhead and more parallelism on disk reads (—disk=throughput ?)
+- Please provide official binaries: https://github.com/ledgerwatch/erigon/issues/4153
+- 
