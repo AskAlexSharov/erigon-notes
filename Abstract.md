@@ -6,6 +6,7 @@ Abstract
     - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
       block https://github.com/ledgerwatch/erigon/issues/3968
     - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
+    - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
     - can’t run erigon with -race flag
 
 - Configuration (do by many small steps - easy to review PR):
