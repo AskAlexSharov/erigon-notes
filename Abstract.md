@@ -1,7 +1,6 @@
 # Erigon support (from Github)
 
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
-- bsc trace rpc return bnb burning inner transaction on every
 - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
   block https://github.com/ledgerwatch/erigon/issues/3968
 - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
@@ -18,6 +17,7 @@
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
 - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
 - Tracing:
+    - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
     - Different results found for rpctest benchTraceCallMany (Erigon vs
       OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
     - Different results for trace_filter between Erigon and OE
