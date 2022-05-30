@@ -1,8 +1,6 @@
 # Erigon support (from Github)
 
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
-- eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
-  block https://github.com/ledgerwatch/erigon/issues/3968
 - Tracing:
     - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
     - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
@@ -20,6 +18,8 @@
     - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
     - EIP-1898 differences in responses between Erigon and GETH https://github.com/ledgerwatch/erigon/issues/3434
     - Adopt tests in api_test.go for RPCDaemon https://github.com/ledgerwatch/erigon/issues/939
+    - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
+      block https://github.com/ledgerwatch/erigon/issues/3968
 - Address user's feedback:
     - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
     - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
