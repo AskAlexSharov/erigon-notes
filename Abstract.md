@@ -2,6 +2,7 @@
 
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
 - Tracing:
+    - we need more auto-tests for Tracing - otherwise easy to break
     - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
     - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
     - Different results found for rpctest benchTraceCallMany (Erigon vs
@@ -68,6 +69,12 @@
 - Erigon2 Upgrade2:
     - run all /tests on new commitment code
     - Addapt new History and Commitment code behind experimental flag
+    - RPC KV - add higher level interface than kv: where we will operate by Erigon's Domains and Inverted indices (no
+      matter where they stored in DB or in Snapshots).
+        - Alex added type Inverted index. Take a look.
+        - Alex will write proposal
+        - Maybe we can read historical things by: get domain where blockNumb between A and B.
+
 - After Erigon2:
     - mining must use new commitment code
     - mining: eth_getBlockByNumber returns null for pending block https://github.com/ledgerwatch/erigon/issues/2771
@@ -79,7 +86,7 @@
     - I think sometime it does ban all peers - and stuck
     - BitTorrent has feature: fallback to http urls if no peers alive. Investigate if we can use public S3 or GCS as
       such fallback. How much it will cost? CDN can make it cheaper? Cheaper than maintain Downloader
-      node + backups?
+      node + backups? Can community do it (add own urls)?
     - Instead of datadir/snapshots_tmp need use datadir/snapshots/tmp - because user must be able to mount
       datadir/snapshots to another disk
     - Some code to migrate from v1 to v2 of snapshots
@@ -105,8 +112,8 @@
 
 # Small things
 
-- Erigon2:
-    - getter - iterator on stack
+- Erigon:
+    - compress.Getter - iterator on stack
     - like tables.go - but for snapshots
     - like rawdb - but for snapshots (pure funcs)
     - Add more test for blocks snapshots
