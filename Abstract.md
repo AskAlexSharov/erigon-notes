@@ -2,7 +2,8 @@
 
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
 - Tracing:
-    - we need more auto-tests for Tracing - otherwise easy to break
+    - we need more auto-tests for Tracing - otherwise easy to break (maybe can copy them from OpenEthereum, maybe can
+      run ./cmd/rpctest)
     - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
     - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
     - Different results found for rpctest benchTraceCallMany (Erigon vs
