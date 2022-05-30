@@ -28,8 +28,6 @@
 - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
   blocks https://github.com/ledgerwatch/erigon/issues/3243
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
-- close this tasks? https://github.com/ledgerwatch/erigon/issues/2659
-  and https://github.com/ledgerwatch/erigon/issues/2658
 
 ## Configuration (do by many small steps - easy to review PR)
 
@@ -65,6 +63,8 @@
 ## Big things
 
 - AuRa Gnosis DAO: https://github.com/ledgerwatch/erigon/issues/3643
+    - Also https://github.com/ledgerwatch/erigon/issues/2659 and https://github.com/ledgerwatch/erigon/issues/2658
+
 - Observer
     - Observer to Otterscan
 - Erigon2 Upgrade2:
