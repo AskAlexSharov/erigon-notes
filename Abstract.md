@@ -1,65 +1,3 @@
-# Erigon support (from Github)
-
-- BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
-- Tracing:
-    - we need more auto-tests for Tracing - otherwise easy to break (maybe can copy them from OpenEthereum, maybe can
-      run ./cmd/rpctest)
-    - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
-    - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
-    - Different results found for rpctest benchTraceCallMany (Erigon vs
-      OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
-    - Different results for trace_filter between Erigon and OE
-      #2138 https://github.com/ledgerwatch/erigon/issues/2138
-    - Tracing has incorrect gasUsed for value transfers #1436 https://github.com/ledgerwatch/erigon/issues/1436
-    - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
-      methods: https://github.com/ledgerwatch/erigon/issues/3080
-- RPC:
-    - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
-    - some eth_getTransactionReceipt calls return null for some early
-    - eth_call "method handler crashed" depending on block argument https://github.com/ledgerwatch/erigon/issues/3152
-    - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
-    - EIP-1898 differences in responses between Erigon and GETH https://github.com/ledgerwatch/erigon/issues/3434
-    - Adopt tests in api_test.go for RPCDaemon https://github.com/ledgerwatch/erigon/issues/939
-    - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
-      block https://github.com/ledgerwatch/erigon/issues/3968
-- Address user's feedback:
-    - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
-    - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
-- some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
-  blocks https://github.com/ledgerwatch/erigon/issues/3243
-- High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
-
-## Configuration (do by many small steps - easy to review PR)
-
-- 3 steps: 1. create configs, 2. create objects and stages, 3. start goroutines, httpListeners, connect to remote
-  servers
-- step1:
-    - 1 ethconfig.Config object is the result of step 1 and input of step 2.
-    - Each component (sentry, txpool, erigon, rpc, downloader) provide own config (for example torrentcfg.Cfg)
-    - ethconfig package must not depend on huge packages (like “core”), but it can depend on other small config
-      packages (like “torrentcfg“) or utilities (like “common” or “types”).
-    - Move configuration logic out of `erigon/eth/backend.go:New` to higher-level funcs
-    - Create 1 DataDir object with pre-filled paths to all sub-dirs: dir.tmp, dir.chaindata, dir.snap, etc…
-    - Each sub-config must have defaults. Example: txpool.DefaultConfig, torrentcfg.Default()
-    - ethconfig.Config.Genesis must be filled on this step
-- step2:
-    - 1 turbo/services.All object to hold all services. It’s output of step 2.
-    - Each component (sentry, txpool, erigon, rpc, downloader) provide own object (for example rpcservices.All).
-    - It’s ok to create gRPC connections here (for example remote.NewKVClient(conn)), because grpc connection is
-      lazy (not fail-fast) and has retry logic inside. It’s important because when run components (sentry, txpool,
-      erigon, rpc, downloader) as individual processes (outside of Erigon) - they must start independently - even if
-      all other components are down. It helps to prevent cascade outage and simplify cluster operations.
-    - SetEthConfig() - must return error
-    - turbo/services package must not depend on huge packages
-    - “cmd/rpcdaemon/rpcservices/eth_txpool.go” must not depend on “erigon-lib/txpool“ (it needs only 1 constant)
-- step3:
-    - ethereum.Start or txpool.MainLoop
-    - Apply same ideas to cmd/txpool/main.go, cmd/sentry/main.go, cmd/downloader/main.go, cmd/rpcdaemon/main.go
-- reduce nil-ness:
-    - less rely on nil-ness of objects: “if txpool == nil {“ - better use cfg.TxPool.Enabled. It means we can create
-      internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is
-      enabled.
-
 ## Big things
 
 - AuRa Gnosis DAO: https://github.com/ledgerwatch/erigon/issues/3643
@@ -129,6 +67,69 @@
     - 1 ethconfig.Config object is the result of step 1 and input to step 2.
     - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
       step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
+
+# Erigon support (from Github)
+
+- BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
+- Tracing:
+    - we need more auto-tests for Tracing - otherwise easy to break (maybe can copy them from OpenEthereum, maybe can
+      run ./cmd/rpctest)
+    - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
+    - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
+    - Different results found for rpctest benchTraceCallMany (Erigon vs
+      OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
+    - Different results for trace_filter between Erigon and OE
+      #2138 https://github.com/ledgerwatch/erigon/issues/2138
+    - Tracing has incorrect gasUsed for value transfers #1436 https://github.com/ledgerwatch/erigon/issues/1436
+    - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
+      methods: https://github.com/ledgerwatch/erigon/issues/3080
+- RPC:
+    - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
+    - some eth_getTransactionReceipt calls return null for some early
+    - eth_call "method handler crashed" depending on block argument https://github.com/ledgerwatch/erigon/issues/3152
+    - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
+    - EIP-1898 differences in responses between Erigon and GETH https://github.com/ledgerwatch/erigon/issues/3434
+    - Adopt tests in api_test.go for RPCDaemon https://github.com/ledgerwatch/erigon/issues/939
+    - eth_subscriptionLogs with topics filter problem https://github.com/ledgerwatch/erigon/issues/4030
+      block https://github.com/ledgerwatch/erigon/issues/3968
+- Address user's feedback:
+    - Address flags usability feedback: https://github.com/ledgerwatch/erigon/issues/3932
+    - Address something from user feedback https://github.com/ledgerwatch/erigon/issues/3121
+- some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
+  blocks https://github.com/ledgerwatch/erigon/issues/3243
+- High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
+
+## Configuration and ServiceDiscovery (do by many small steps - easy to review PR)
+
+- ServiceDiscovery: alex will propose
+- 3 steps: 1. create configs, 2. create objects and stages, 3. start goroutines, httpListeners, connect to remote
+  servers
+- step1:
+    - 1 ethconfig.Config object is the result of step 1 and input of step 2.
+    - Each component (sentry, txpool, erigon, rpc, downloader) provide own config (for example torrentcfg.Cfg)
+    - ethconfig package must not depend on huge packages (like “core”), but it can depend on other small config
+      packages (like “torrentcfg“) or utilities (like “common” or “types”).
+    - Move configuration logic out of `erigon/eth/backend.go:New` to higher-level funcs
+    - Create 1 DataDir object with pre-filled paths to all sub-dirs: dir.tmp, dir.chaindata, dir.snap, etc…
+    - Each sub-config must have defaults. Example: txpool.DefaultConfig, torrentcfg.Default()
+    - ethconfig.Config.Genesis must be filled on this step
+- step2:
+    - 1 turbo/services.All object to hold all services. It’s output of step 2.
+    - Each component (sentry, txpool, erigon, rpc, downloader) provide own object (for example rpcservices.All).
+    - It’s ok to create gRPC connections here (for example remote.NewKVClient(conn)), because grpc connection is
+      lazy (not fail-fast) and has retry logic inside. It’s important because when run components (sentry, txpool,
+      erigon, rpc, downloader) as individual processes (outside of Erigon) - they must start independently - even if
+      all other components are down. It helps to prevent cascade outage and simplify cluster operations.
+    - SetEthConfig() - must return error
+    - turbo/services package must not depend on huge packages
+    - “cmd/rpcdaemon/rpcservices/eth_txpool.go” must not depend on “erigon-lib/txpool“ (it needs only 1 constant)
+- step3:
+    - ethereum.Start or txpool.MainLoop
+    - Apply same ideas to cmd/txpool/main.go, cmd/sentry/main.go, cmd/downloader/main.go, cmd/rpcdaemon/main.go
+- reduce nil-ness:
+    - less rely on nil-ness of objects: “if txpool == nil {“ - better use cfg.TxPool.Enabled. It means we can create
+      internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is
+      enabled.
 
 ## Low Prio
 
