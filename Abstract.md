@@ -55,14 +55,6 @@
 - step3:
     - ethereum.Start or txpool.MainLoop
     - Apply same ideas to cmd/txpool/main.go, cmd/sentry/main.go, cmd/downloader/main.go, cmd/rpcdaemon/main.go
-- Code Deduplication
-    - Several “StartGrpc” funcs are exists
-    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
-      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
-      opening (steps 1 and 3).
-    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
-    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
-      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
 - reduce nil-ness:
     - less rely on nil-ness of objects: “if txpool == nil {“ - better use cfg.TxPool.Enabled. It means we can create
       internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is
@@ -121,6 +113,14 @@
 - Docker:
     - DockerCompose: add external txpool and 2 sentries
     - Can docker hub build images for other architectures? https://github.com/ledgerwatch/erigon/issues/3878
+- Code Deduplication
+    - Several “StartGrpc” funcs are exists
+    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
+      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
+      opening (steps 1 and 3).
+    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
+    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
+      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
 
 ## Low Prio
 
