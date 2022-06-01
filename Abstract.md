@@ -58,7 +58,8 @@
     - Add more test for blocks snapshots
 - Docker:
     - DockerCompose: add external txpool and 2 sentries
-    - Can docker hub build images for other architectures? https://github.com/ledgerwatch/erigon/issues/3878
+    - Multi-platform images on
+      DockerHub: https://dev.to/cloudx/multi-arch-docker-images-the-easy-way-with-github-actions-4k54 https://github.com/ledgerwatch/erigon/issues/3878
 - Code Deduplication
     - Several “StartGrpc” funcs are exists
     - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
@@ -84,6 +85,7 @@
     - Please add support for debug_traceBlockByNumber and debug_traceBlockByHash
       methods: https://github.com/ledgerwatch/erigon/issues/3080
 - RPC:
+    - eth_getBlockByNumber returns null for pending block: https://github.com/ledgerwatch/erigon/issues/2771
     - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
     - some eth_getTransactionReceipt calls return null for some early
     - eth_call "method handler crashed" depending on block argument https://github.com/ledgerwatch/erigon/issues/3152
@@ -99,9 +101,12 @@
   blocks https://github.com/ledgerwatch/erigon/issues/3243
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
 
-## Configuration and ServiceDiscovery (do by many small steps - easy to review PR)
+## ServiceDiscovery
 
 - ServiceDiscovery: alex will propose
+
+## Configuration (do by many small steps - easy to review PR)
+
 - 3 steps: 1. create configs, 2. create objects and stages, 3. start goroutines, httpListeners, connect to remote
   servers
 - step1:
