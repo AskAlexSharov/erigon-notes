@@ -18,8 +18,6 @@
     - mining must use new commitment code
     - mining: eth_getBlockByNumber returns null for pending block https://github.com/ledgerwatch/erigon/issues/2771
 - Snapshots/Bittorrent:
-    - Will we introduce new stages for snapshots? Now code is in "before stage header" and "before stage senders prune".
-      To make decision and create task for it.
     - Automate git push to snapshots repo
     - after restart it may Ban good peers https://github.com/anacrolix/torrent/issues/746
     - I think sometime it does ban all peers - and stuck
@@ -29,6 +27,8 @@
     - Instead of datadir/snapshots_tmp need use datadir/snapshots/tmp - because user must be able to mount
       datadir/snapshots to another disk
     - Some code to migrate from v1 to v2 of snapshots
+    - Will we introduce new stages for snapshots? Now code is in "before stage header" and "before stage senders prune".
+      To make decision and create task for it.
 - Rollup:
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup
       inside Erigon).
