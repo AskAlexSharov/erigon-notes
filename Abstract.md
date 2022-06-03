@@ -71,6 +71,7 @@
 
 # Erigon support (from Github)
 
+- Merkle Trie root miss-match: big domain which need an owner
 - BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
 - Tracing:
     - Custom Tracer Method Handler Crash https://github.com/ledgerwatch/erigon/issues/4340
