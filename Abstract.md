@@ -108,9 +108,10 @@
 - ServiceDiscovery:
     - My advise - don't go for AutoServiceDiscovery (consul - big dependency; xds - complex thing for multi-datacenter
       deployments, require hand-made state-less xds_server). docker-compose.yml is only 40 lines for all our sercvices.
-    - Need improve DevExperience of docker-compose.yml: speedup local re-build, make sure that all small services can
-      start in docker-compose while start erigon on host-machine, nested gitignored 
-    -
+    - Need improve DevExperience of docker-compose.yml:
+        - speedup local re-build
+        - make sure that all small services can start in docker-compose while start erigon on host-machine
+        - add more flags, inherite and re-define by gitignored docker-compose.*.yml (edit files better than cli)
 
 ## Low Prio
 
