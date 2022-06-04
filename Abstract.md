@@ -141,6 +141,7 @@
 ## Low Prio
 
 - can’t run erigon with -race flag
+- allow --metrics and --pprof use same port (they conflict now)
 - Binance:
     - make —db.pageSize=8kb default
 - Grafana:
