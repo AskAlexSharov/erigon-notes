@@ -106,14 +106,6 @@
 - Docker:
     - Multi-platform images on
       DockerHub: https://dev.to/cloudx/multi-arch-docker-images-the-easy-way-with-github-actions-4k54 https://github.com/ledgerwatch/erigon/issues/3878
-- Code Deduplication
-    - Several “StartGrpc” funcs are exists
-    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
-      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
-      opening (steps 1 and 3).
-    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
-    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
-      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
 - Binance:
     - make —db.pageSize=8kb default
 - Grafana:
@@ -158,4 +150,12 @@
     - less rely on nil-ness of objects: “if txpool == nil {“ - better use cfg.TxPool.Enabled. It means we can create
       internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is
       enabled.
+- Code Deduplication
+    - Several “StartGrpc” funcs are exists
+    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
+      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
+      opening (steps 1 and 3).
+    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
+    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
+      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
 
