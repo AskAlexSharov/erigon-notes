@@ -107,6 +107,25 @@
 
 - ServiceDiscovery: alex will propose
 
+## Low Prio
+
+- can’t run erigon with -race flag
+- allow --metrics and --pprof use same port (they conflict now)
+- Binance:
+    - make —db.pageSize=8kb default
+- Grafana:
+    - Add torrent metrics
+- Compressor:
+    - predict posmap size (or move it to the end of file). predict posmap size. Or move .seg header to footer.
+- Cloud:
+    - Add some flag to enable kv.ReadAhead and more parallelism on disk reads (—disk=throughput ?)
+- Please provide official binaries: https://github.com/ledgerwatch/erigon/issues/4153
+- TxPool:
+    - History of txPool (by option): timestamp when we received it by p2p, timestamp of rejection, tx rlp, senderAddr
+      senderNonce, senderBalance, rejection reason, reason of moving to pool X.
+    - Default history of rejection by txHash for 1 day only for local txs.
+
+
 ## Configuration (do by many small steps - easy to review PR)
 
 - 3 steps: 1. create configs, 2. create objects and stages, 3. start goroutines, httpListeners, connect to remote
@@ -138,20 +157,3 @@
       internal objects: grpcServers, txpool, etc… But start goroutines and http listeners only if component is
       enabled.
 
-## Low Prio
-
-- can’t run erigon with -race flag
-- allow --metrics and --pprof use same port (they conflict now)
-- Binance:
-    - make —db.pageSize=8kb default
-- Grafana:
-    - Add torrent metrics
-- Compressor:
-    - predict posmap size (or move it to the end of file). predict posmap size. Or move .seg header to footer.
-- Cloud:
-    - Add some flag to enable kv.ReadAhead and more parallelism on disk reads (—disk=throughput ?)
-- Please provide official binaries: https://github.com/ledgerwatch/erigon/issues/4153
-- TxPool:
-    - History of txPool (by option): timestamp when we received it by p2p, timestamp of rejection, tx rlp, senderAddr
-      senderNonce, senderBalance, rejection reason, reason of moving to pool X.
-    - Default history of rejection by txHash for 1 day only for local txs.
