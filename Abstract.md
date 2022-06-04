@@ -49,26 +49,6 @@
     - remote_kv.Block() - doesn’t use existing read transaction
     - Under heavy load to getBlockByNumber - does race (or panic)
 
-# Small things
-
-- Erigon:
-    - compress.Getter - iterator on stack
-    - like tables.go - but for snapshots
-    - like rawdb - but for snapshots (pure funcs)
-    - Add more test for blocks snapshots
-- Docker:
-    - DockerCompose: add external txpool and 2 sentries
-    - Multi-platform images on
-      DockerHub: https://dev.to/cloudx/multi-arch-docker-images-the-easy-way-with-github-actions-4k54 https://github.com/ledgerwatch/erigon/issues/3878
-- Code Deduplication
-    - Several “StartGrpc” funcs are exists
-    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
-      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
-      opening (steps 1 and 3).
-    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
-    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
-      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
-
 # Erigon support (from Github)
 
 - Merkle Trie root miss-match: big domain which need an owner
@@ -118,6 +98,22 @@
 
 - can’t run erigon with -race flag
 - allow --metrics and --pprof use same port (they conflict now)
+- Erigon:
+    - compress.Getter - iterator on stack
+    - like tables.go - but for snapshots
+    - like rawdb - but for snapshots (pure funcs)
+    - Add more test for blocks snapshots
+- Docker:
+    - Multi-platform images on
+      DockerHub: https://dev.to/cloudx/multi-arch-docker-images-the-easy-way-with-github-actions-4k54 https://github.com/ledgerwatch/erigon/issues/3878
+- Code Deduplication
+    - Several “StartGrpc” funcs are exists
+    - `cmd/integration/commands/root.go:openKV`, `node/node.go:OpenDatabase`,`consensus/db/db.go`
+      and `p2p/enode/nodedb.go` - must use same code to open db. And this code must separate configuration from db
+      opening (steps 1 and 3).
+    - 1 ethconfig.Config object is the result of step 1 and input to step 2.
+    - 1 Ethereum object to hold other objects. No DI, no inversion of control. But use interfaces. It’s result of
+      step 2. ethereum.Start() and ethereum.Stop() for goroutines creation
 - Binance:
     - make —db.pageSize=8kb default
 - Grafana:
