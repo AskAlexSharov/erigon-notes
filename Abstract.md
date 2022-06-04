@@ -105,7 +105,12 @@
 
 ## ServiceDiscovery
 
-- ServiceDiscovery: alex will propose
+- ServiceDiscovery:
+    - My advise - don't go for AutoServiceDiscovery (consul - big dependency; xds - complex thing for multi-datacenter
+      deployments, require hand-made state-less xds_server). docker-compose.yml is only 40 lines for all our sercvices.
+    - Need improve DevExperience of docker-compose.yml: speedup local re-build, make sure that all small services can
+      start in docker-compose while start erigon on host-machine, nested gitignored 
+    -
 
 ## Low Prio
 
@@ -124,7 +129,6 @@
     - History of txPool (by option): timestamp when we received it by p2p, timestamp of rejection, tx rlp, senderAddr
       senderNonce, senderBalance, rejection reason, reason of moving to pool X.
     - Default history of rejection by txHash for 1 day only for local txs.
-
 
 ## Configuration (do by many small steps - easy to review PR)
 
