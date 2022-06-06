@@ -32,17 +32,17 @@
 - Rollup:
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup
       inside Erigon).
-- TxPool - less goroutines (1 channel and 1 goroutine per subscriber)
-    - txpool autostart on netID > 10. Mining has hacks. Mining need
-    - rlp and transaction receipts
-    - after Erigon2 need mining move to TxPool
-    - Investigate nil in LRU https://github.com/ledgerwatch/erigon/issues/3799
+- TxPool:
+    - Erigon has less txs than Geth (re-check rlp deserialization errors: `if rlp.IsRLPError(err) {`)
+    - erigon-lib/txpool/pool.go:MainLoop producing much goroutines
+    - Investigate nil in LRU (likely it's race, not enough locks) https://github.com/ledgerwatch/erigon/issues/3799
       and https://github.com/hashicorp/golang-lru/issues/100
     - move tx.rlp field to separated map, to make tx immutable
     - Implement txpool_pendingTransactions (similar to
       parity_pendingTransactions) https://github.com/ledgerwatch/erigon/issues/2917 . txpool_content - doesn’t support
       filters (TxPool can have 500K transactions). we need new method or extend this
       one - to support basic filters.
+    - after Erigon2 need mining move to TxPool
 - RPCDaemon:
     - remote_kv server - change architecture to reduce amount of read txs (or just somehow increase amount of read txs).
     - remote_kv.TxLookup() - doesn’t use existing read transaction
