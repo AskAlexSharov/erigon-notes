@@ -84,6 +84,7 @@
 - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
   blocks https://github.com/ledgerwatch/erigon/issues/3243
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
+- Support (like geth) .toml config file
 
 ## ServiceDiscovery
 
@@ -131,7 +132,7 @@
     - ethconfig package must not depend on huge packages (like “core”), but it can depend on other small config
       packages (like “torrentcfg“) or utilities (like “common” or “types”).
     - Move configuration logic out of `erigon/eth/backend.go:New` to higher-level funcs
-    - Create 1 DataDir object with pre-filled paths to all sub-dirs: dir.tmp, dir.chaindata, dir.snap, etc…
+    - [done] Create 1 DataDir object with pre-filled paths to all sub-dirs: dir.tmp, dir.chaindata, dir.snap, etc…
     - Each sub-config must have defaults. Example: txpool.DefaultConfig, torrentcfg.Default()
     - ethconfig.Config.Genesis must be filled on this step
 - step2:
