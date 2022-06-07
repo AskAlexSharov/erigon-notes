@@ -24,8 +24,6 @@
     - BitTorrent has feature: fallback to http urls if no peers alive. Investigate if we can use public S3 or GCS as
       such fallback. How much it will cost? CDN can make it cheaper? Cheaper than maintain Downloader
       node + backups? Can community do it (add own urls)?
-    - Instead of datadir/snapshots_tmp need use datadir/snapshots/tmp - because user must be able to mount
-      datadir/snapshots to another disk
     - Some code to migrate from v1 to v2 of snapshots
     - Will we introduce new stages for snapshots? Now code is in "before stage header" and "before stage senders prune".
       To make decision and create task for it.
