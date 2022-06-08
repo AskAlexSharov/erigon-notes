@@ -33,9 +33,12 @@
       inside Erigon).
 - TxPool:
     - Erigon has less txs than Geth (re-check rlp deserialization errors: `if rlp.IsRLPError(err) {`)
+    - New pending transactions streaming subscribtions are very
+      slow: https://github.com/ledgerwatch/erigon/issues/3373#issuecomment-1149245943
     - erigon-lib/txpool/pool.go:MainLoop producing much goroutines
     - Investigate nil in LRU (likely it's race, not enough locks) https://github.com/ledgerwatch/erigon/issues/3799
-      and https://github.com/hashicorp/golang-lru/issues/100
+      and https://github.com/hashicorp/golang-lru/issues/100 (or run with -race, or add more locks, or change LRU to
+      thread-safe version)
     - move tx.rlp field to separated map, to make tx immutable
     - Implement txpool_pendingTransactions (similar to
       parity_pendingTransactions) https://github.com/ledgerwatch/erigon/issues/2917 . txpool_content - doesn’t support
