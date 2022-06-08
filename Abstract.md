@@ -18,6 +18,7 @@
     - mining must use new commitment code
     - mining: eth_getBlockByNumber returns null for pending block https://github.com/ledgerwatch/erigon/issues/2771
 - Snapshots/Bittorrent:
+    - Avoid internet requirement at node startup: you see it as `Fetching torrent files metadata` in logs
     - Automate git push to snapshots repo
     - after restart it may Ban good peers https://github.com/anacrolix/torrent/issues/746
     - I think sometime it does ban all peers - and stuck
