@@ -29,6 +29,7 @@
     - Will we introduce new stages for snapshots? Now code is in "before stage header" and "before stage senders prune".
       To make decision and create task for it.
     - erigon-lib/compress: slow and CPU-greedy
+    - bittorent lib does produce much goroutines
 - Rollup:
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup
       inside Erigon).
