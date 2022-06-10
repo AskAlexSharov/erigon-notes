@@ -30,7 +30,8 @@
       To make decision and create task for it.
     - erigon-lib/compress: slow and CPU-greedy
     - bittorent lib does produce much goroutines
-    - [done] fsync sometime: https://github.com/anacrolix/torrent/pull/755 and https://github.com/anacrolix/torrent/pull/754
+    - [done] fsync sometime: https://github.com/anacrolix/torrent/pull/755
+      and https://github.com/anacrolix/torrent/pull/754
 - Rollup:
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup
       inside Erigon).
