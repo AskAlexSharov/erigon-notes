@@ -64,7 +64,6 @@
     - we need more auto-tests for Tracing - otherwise easy to break (maybe can copy them from OpenEthereum, maybe can
       run ./cmd/rpctest)
     - bsc trace rpc return bnb burning inner transaction on every https://github.com/ledgerwatch/erigon/issues/3968
-    - Trace: Bad address balance during SUICIDE https://github.com/ledgerwatch/erigon/issues/3953
     - Different results found for rpctest benchTraceCallMany (Erigon vs
       OpenEthereum)  https://github.com/ledgerwatch/erigon/issues/2490
     - Different results for trace_filter between Erigon and OE
@@ -74,9 +73,7 @@
       methods: https://github.com/ledgerwatch/erigon/issues/3080
 - RPC:
     - eth_getBlockByNumber returns null for pending block: https://github.com/ledgerwatch/erigon/issues/2771
-    - eth_sendRawTransaction error https://github.com/ledgerwatch/erigon/issues/3625
     - some eth_getTransactionReceipt calls return null for some early
-    - eth_call "method handler crashed" depending on block argument https://github.com/ledgerwatch/erigon/issues/3152
     - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
     - EIP-1898 differences in responses between Erigon and GETH https://github.com/ledgerwatch/erigon/issues/3434
     - Adopt tests in api_test.go for RPCDaemon https://github.com/ledgerwatch/erigon/issues/939
@@ -90,16 +87,16 @@
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
 - Support (like geth) .toml config file
 
-## ServiceDiscovery
+RPC:
+  - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
+  - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
+  - Custom Tracer Method Handler Crash https://github.com/ledgerwatch/erigon/issues/4340
 
-- ServiceDiscovery:
-    - My advise - don't go for AutoServiceDiscovery (consul - big dependency; xds - complex thing for multi-datacenter
-      deployments, require hand-made state-less xds_server). docker-compose.yml is only 40 lines for all our sercvices.
-    - Need improve DevExperience of docker-compose.yml:
-        - speedup local re-build
-        - make sure that all small services can start in docker-compose while start erigon on host-machine
-        - add more flags, inherite and re-define by gitignored docker-compose.*.yml (edit files better than cli)
-
+TxPool:
+    - Erigon has less txs than Geth (re-check rlp deserialization
+      errors: `if rlp.IsRLPError(err) {`): https://github.com/ledgerwatch/erigon/issues/3892
+    - Race and Panic when connect TxPool to 2 sentries: https://github.com/ledgerwatch/erigon/issues/3799
+    
 ## Low Prio
 
 - can’t run erigon with -race flag
