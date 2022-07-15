@@ -87,16 +87,6 @@
 - High number of concurrent network connections https://github.com/ledgerwatch/erigon/issues/3126
 - Support (like geth) .toml config file
 
-RPC:
-  - Wrong results for eth_call when using a future block number https://github.com/ledgerwatch/erigon/issues/3136
-  - some cross-compile issue: https://github.com/ledgerwatch/erigon/issues/3676
-  - Custom Tracer Method Handler Crash https://github.com/ledgerwatch/erigon/issues/4340
-
-TxPool:
-    - Erigon has less txs than Geth (re-check rlp deserialization
-      errors: `if rlp.IsRLPError(err) {`): https://github.com/ledgerwatch/erigon/issues/3892
-    - Race and Panic when connect TxPool to 2 sentries: https://github.com/ledgerwatch/erigon/issues/3799
-    
 ## Low Prio
 
 - can’t run erigon with -race flag
