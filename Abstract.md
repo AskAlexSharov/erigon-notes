@@ -57,8 +57,6 @@
 # Erigon support (from Github)
 
 - Merkle Trie root miss-match: big domain which need an owner
-- BSC to support Euler hard-fork https://github.com/ledgerwatch/erigon/issues/4097
-- Goerli: snapshot.store() segfault https://github.com/ledgerwatch/erigon/issues/4298
 - Tracing:
     - Custom Tracer Method Handler Crash https://github.com/ledgerwatch/erigon/issues/4340
     - we need more auto-tests for Tracing - otherwise easy to break (maybe can copy them from OpenEthereum, maybe can
