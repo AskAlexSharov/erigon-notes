@@ -36,8 +36,6 @@
     - We already have multi-protocol support: Node -> Ethereum. Can add one more Node -> Rollup (If need run Rollup
       inside Erigon).
 - TxPool:
-    - Erigon has less txs than Geth (re-check rlp deserialization
-      errors: `if rlp.IsRLPError(err) {`): https://github.com/ledgerwatch/erigon/issues/3892
     - erigon-lib/txpool/pool.go:MainLoop producing much goroutines
     - Investigate nil in LRU (likely it's race, not enough locks) https://github.com/ledgerwatch/erigon/issues/3799
       and https://github.com/hashicorp/golang-lru/issues/100 (or run with -race, or add more locks, or change LRU to
